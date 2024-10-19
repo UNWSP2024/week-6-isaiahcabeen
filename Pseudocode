@@ -1,0 +1,27 @@
+BEGIN
+
+    FUNCTION calculate_tax(total_sales)
+        SET state_tax_rate = 0.05
+        SET county_tax_rate = 0.025
+        
+        SET county_tax = total_sales * county_tax_rate
+        SET state_tax = total_sales * state_tax_rate
+        SET total_tax = county_tax + state_tax
+        
+        RETURN county_tax, state_tax, total_tax
+    END FUNCTION
+
+    FUNCTION main()
+        PRINT "Enter the total sales for the month: "
+        INPUT total_sales
+        
+        SET (county_tax, state_tax, total_tax) = calculate_tax(total_sales)
+
+        PRINT "Amount of county sales tax: ", county_tax
+        PRINT "Amount of state sales tax: ", state_tax
+        PRINT "Total sales tax: ", total_tax
+    END FUNCTION
+
+    CALL main()
+
+END
